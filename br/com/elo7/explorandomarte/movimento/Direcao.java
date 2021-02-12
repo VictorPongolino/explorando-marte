@@ -1,1 +1,0 @@
-package br.com.elo7.explorandomarte.movimento;

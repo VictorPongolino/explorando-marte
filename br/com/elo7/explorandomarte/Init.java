@@ -10,13 +10,6 @@ public class Init {
         Sonda umaSonda = new Sonda(new Malha(x, y));
 
         umaSonda.imprimir();
-        umaSonda.rotacionar(OpcoesMovimentos.DIREITA);
-        umaSonda.imprimir();
-        umaSonda.rotacionar(OpcoesMovimentos.DIREITA);
-        umaSonda.imprimir();
-        umaSonda.rotacionar(OpcoesMovimentos.DIREITA);
-        umaSonda.imprimir();
-        umaSonda.rotacionar(OpcoesMovimentos.DIREITA);
-        umaSonda.imprimir();
+        umaSonda.moverFrente();
     }
 }

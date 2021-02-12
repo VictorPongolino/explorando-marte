@@ -2,9 +2,9 @@ package br.com.elo7.explorandomarte.localizacao;
 
 public enum RosasDosVentos {
     NORTE(0),
-    OESTE(1),
+    LESTE(1),
     SUL(2),
-    LESTE(3);
+    OESTE(3);
 
     private int valor;
 

@@ -5,37 +5,60 @@ import br.com.elo7.explorandomarte.movimento.*;
 
 public class Sonda implements Movimentacao {
 
-    private Malha posicao;
+    private Malha malha;
+    private int coordenadaSondaX = 0, coordenadaSondaY = 0;
     private RosasDosVentos ultimaRotacao = RosasDosVentos.NORTE; 
 
     public Sonda(Malha localizacao) {
-        this.posicao = localizacao;
+        this.malha = localizacao;
     }
 
     @Override
     public String toString() {
-        return "(0, 0, " + ultimaRotacao + ")";
+        return "(" + coordenadaSondaX + "," + coordenadaSondaY + ", " + ultimaRotacao + ")";
     }
 
     public void imprimir() {
         System.out.println(this);
     }
 
+    public void moverFrente()
+    {
+        this.mover(OpcoesMovimentos.FRENTE);
+    }
+
     @Override
     public void mover(OpcoesMovimentos movimento) {
-        int x = posicao.getMatrizX();
-        int y = posicao.getMatrizY();
+        int x = coordenadaSondaX;
+        int y = coordenadaSondaY;
 
-        if (movimento == movimento.FRENTE)
+        if (movimento == OpcoesMovimentos.FRENTE)
         {
-            
+            if (ultimaRotacao == RosasDosVentos.NORTE)
+                y++;
+            else if (ultimaRotacao == RosasDosVentos.SUL)
+                y--;
+
+            if (ultimaRotacao == RosasDosVentos.LESTE)
+                x++;
+            else if (ultimaRotacao == RosasDosVentos.OESTE)
+                x--;
         }
+
+        if (!isValidCoordenada(x, y)) {
+            System.out.println("Atingiu os limites do Array !");
+            return;
+        }
+        
+        coordenadaSondaX = x;
+        coordenadaSondaY = y;
+        imprimir();
     }
 
     public boolean isValidCoordenada(int x, int y)
     {
-        int matrizX = posicao.getMatrizX();
-        int matrizY = posicao.getMatrizY();
+        int matrizX = malha.getMatrizX();
+        int matrizY = malha.getMatrizY();
 
         return x < matrizX || y < matrizY;
     }
@@ -54,6 +77,7 @@ public class Sonda implements Movimentacao {
             index = listaEnum[ultimoIndexEnumeracao - 1].ordinal();
 
         ultimaRotacao = RosasDosVentos.values()[index];
+        imprimir();
     }
     
 }

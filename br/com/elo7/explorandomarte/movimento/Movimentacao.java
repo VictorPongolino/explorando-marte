@@ -1,4 +1,5 @@
-package br.com.elo7;
+package br.com.elo7.explorandomarte.movimento;
+
 
 public interface Movimentacao {
     void mover(OpcoesMovimentos movimento);

@@ -1,4 +1,7 @@
-package br.com.elo7;
+package br.com.elo7.explorandomarte;
+
+import br.com.elo7.explorandomarte.localizacao.Malha;
+import br.com.elo7.explorandomarte.movimento.*;
 
 public class Sonda implements Movimentacao {
 

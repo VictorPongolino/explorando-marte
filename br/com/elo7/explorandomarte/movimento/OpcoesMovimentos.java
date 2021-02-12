@@ -1,4 +1,5 @@
-package br.com.elo7;
+package br.com.elo7.explorandomarte.movimento;
+
 
 public enum OpcoesMovimentos {
     FRENTE(1);

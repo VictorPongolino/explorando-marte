@@ -1,5 +1,9 @@
 package br.com.elo7.explorandomarte.localizacao;
 
+/**
+ * Enumeração que indica a direção da sonda.
+ * @author VICTOR HUGO PONGOLINO
+ */
 public enum RosasDosVentos {
     NORTE(0),
     LESTE(1),

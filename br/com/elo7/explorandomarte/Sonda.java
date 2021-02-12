@@ -20,6 +20,11 @@ public class Sonda implements Movimentacao {
         this.coordenadaSondaY = coordenadaSondaY;
     }
 
+    public Sonda (Malha localizacao, int coordenadaSondaX, int coordenadaSondaY, RosasDosVentos rotacaoInicial) {
+        this(localizacao, coordenadaSondaX, coordenadaSondaY);
+        this.ultimaRotacao = rotacaoInicial;
+    }
+
     @Override
     public String toString() {
         return "(" + coordenadaSondaX + "," + coordenadaSondaY + ", " + ultimaRotacao + ")";
@@ -79,7 +84,6 @@ public class Sonda implements Movimentacao {
         
         coordenadaSondaX = x;
         coordenadaSondaY = y;
-        imprimir();
     }
 
     public boolean isValidCoordenada(int x, int y)
@@ -104,7 +108,6 @@ public class Sonda implements Movimentacao {
             index = listaEnum[ultimoIndexEnumeracao - 1].ordinal();
 
         ultimaRotacao = RosasDosVentos.values()[index];
-        imprimir();
     }
     
 }

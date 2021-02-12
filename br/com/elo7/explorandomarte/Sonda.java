@@ -29,7 +29,7 @@ public class Sonda implements Movimentacao {
     /**
      * A atual direção da nave para a movimentação sobre o planalto. 
      */
-    private RosasDosVentos ultimaRotacao = RosasDosVentos.NORTE; 
+    private RosasDosVentos ultimaRotacao = RosasDosVentos.N; 
 
     /**
      * Cria uma sonda que poderá navegar sobre um malha de planalto através de comandos de controle.
@@ -70,9 +70,9 @@ public class Sonda implements Movimentacao {
      */
     @Override
     public String toString() {
-        return "(" + coordenadaSondaX + "," + coordenadaSondaY + ", " + ultimaRotacao + ")";
+        return coordenadaSondaX + " " + coordenadaSondaY + " " + ultimaRotacao;
     }
-
+ 
     /**
      * Imprime as Coordenadas atuais da sonda e a sua direção em relação a rosas dos ventos.
      */
@@ -128,19 +128,19 @@ public class Sonda implements Movimentacao {
 
         if (movimento == OpcoesMovimentos.FRENTE)
         {
-            if (ultimaRotacao == RosasDosVentos.NORTE)
+            if (ultimaRotacao == RosasDosVentos.N)
                 y++;
-            else if (ultimaRotacao == RosasDosVentos.SUL)
+            else if (ultimaRotacao == RosasDosVentos.S)
                 y--;
 
-            if (ultimaRotacao == RosasDosVentos.LESTE)
+            if (ultimaRotacao == RosasDosVentos.E)
                 x++;
-            else if (ultimaRotacao == RosasDosVentos.OESTE)
+            else if (ultimaRotacao == RosasDosVentos.W)
                 x--;
         }
 
         if (!isValidCoordenada(x, y)) {
-            System.out.println("Atingiu os limites do Array !");
+            System.out.println("Atingiu os limites da malha!");
             return;
         }
         

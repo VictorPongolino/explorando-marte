@@ -10,14 +10,12 @@ public class Init {
         int coordenadaNaveY = 2;
         Sonda umaSonda = new Sonda(new Malha(x, y), coordenadaNaveX, coordenadaNaveY);
 
-        umaSonda.imprimir();
         umaSonda.mandarControle("LMLMLMLMM");
         umaSonda.imprimir();
 
         coordenadaNaveX = 3;
         coordenadaNaveY = 3;
-        Sonda segundaSonda = new Sonda(new Malha(x, y), coordenadaNaveX, coordenadaNaveY, RosasDosVentos.LESTE);
-        segundaSonda.imprimir();
+        Sonda segundaSonda = new Sonda(new Malha(x, y), coordenadaNaveX, coordenadaNaveY, RosasDosVentos.E);
         segundaSonda.mandarControle("MMRMMRMRRM");
         segundaSonda.imprimir();
 

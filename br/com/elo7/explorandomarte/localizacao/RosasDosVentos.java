@@ -5,10 +5,10 @@ package br.com.elo7.explorandomarte.localizacao;
  * @author VICTOR HUGO PONGOLINO
  */
 public enum RosasDosVentos {
-    NORTE(0),
-    LESTE(1),
-    SUL(2),
-    OESTE(3);
+    N(0),
+    E(1),
+    S(2),
+    W(3);
 
     private int valor;
 

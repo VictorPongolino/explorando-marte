@@ -13,6 +13,13 @@ public class Sonda implements Movimentacao {
         this.malha = localizacao;
     }
 
+    public Sonda(Malha localizacao, int coordenadaSondaX, int coordenadaSondaY)
+    {
+        this(localizacao);
+        this.coordenadaSondaX = coordenadaSondaX;
+        this.coordenadaSondaY = coordenadaSondaY;
+    }
+
     @Override
     public String toString() {
         return "(" + coordenadaSondaX + "," + coordenadaSondaY + ", " + ultimaRotacao + ")";
@@ -20,6 +27,26 @@ public class Sonda implements Movimentacao {
 
     public void imprimir() {
         System.out.println(this);
+    }
+
+    public void mandarControle(String controles) {
+        if (controles != null && !controles.isEmpty())
+        {
+            for (int i = 0; i < controles.length(); i++)
+            {
+                char caractere = controles.toUpperCase().charAt(i);
+                if (caractere == 'M')
+                    moverFrente();
+                else if (caractere == 'L')
+                    rotacionar(OpcoesMovimentos.ESQUERDA);
+                else if (caractere == 'R')
+                    rotacionar(OpcoesMovimentos.DIREITA);
+                else 
+                    throw new IllegalArgumentException("Apenas M, L, R são permitidos para controlar a nave !");
+            }
+        }
+        else
+            throw new IllegalArgumentException("Parâmetro de controle deve ter no mínimo 1 caractere de M, L, R !");
     }
 
     public void moverFrente()

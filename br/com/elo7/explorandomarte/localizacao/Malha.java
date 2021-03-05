@@ -14,13 +14,14 @@ public class Malha {
     /**
      * Cria uma Malha especificando os limites fixos em que uma sonda pode usufluir. Caso a sonda atingir 
      * estes limites, {@code IllegalArgumentException} será disparado.
+     * Os limites serão em ambas dimensões N + 1.
      * Os limites devem ser positivos ou {@code NegativeArraySizeException} será lançada pelo Runtime.
      * @param x o tamanho da primeira dimensão
      * @param y o tamanho da segunda dimensão
      */
     public Malha(int x, int y) {
         
-        this.localizacao = new int[x][y];
+        this.localizacao = new int[x + 1][y + 1];
     }
 
     /**

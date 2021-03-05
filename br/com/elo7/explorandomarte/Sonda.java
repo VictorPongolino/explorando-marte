@@ -2,6 +2,7 @@ package br.com.elo7.explorandomarte;
 
 import br.com.elo7.explorandomarte.localizacao.*;
 import br.com.elo7.explorandomarte.movimento.*;
+import br.com.elo7.explorandomarte.localizacao.exceptions.*;
 
 /**
  * Uma sonda explora a malha de um planalto.
@@ -11,15 +12,7 @@ import br.com.elo7.explorandomarte.movimento.*;
  */
 public class Sonda implements Movimentacao {
     
-    /**
-     * Coordenada X da atual localização da sonda.
-     */
-    private int coordenadaSondaX = 0;
-
-    /**
-     * Coordenada Y da atual localização da sonda.
-     */
-    private int coordenadaSondaY = 0;
+    private Coordenada coordenada;
     
     /**
      * A instância que determina o espaço limite em que a sonda pode interagir.
@@ -45,11 +38,10 @@ public class Sonda implements Movimentacao {
      * @param coordenadaSondaX as coordenadas inicias X.
      * @param coordenadaSondaY as coordenadas inicias Y.
      */
-    public Sonda(Malha localizacao, int coordenadaSondaX, int coordenadaSondaY)
+    public Sonda(Malha localizacao, int x, int y)
     {
         this(localizacao);
-        this.coordenadaSondaX = coordenadaSondaX;
-        this.coordenadaSondaY = coordenadaSondaY;
+        this.coordenada = new Coordenada(this.malha, x, y);
     }
 
     /***
@@ -60,8 +52,8 @@ public class Sonda implements Movimentacao {
      * @param coordenadaSondaY as coordenadas inicias Y.
      * @param rotacaoInicial a rotação inicial da sonda.
      */
-    public Sonda (Malha localizacao, int coordenadaSondaX, int coordenadaSondaY, RosasDosVentos rotacaoInicial) {
-        this(localizacao, coordenadaSondaX, coordenadaSondaY);
+    public Sonda (Malha localizacao, int x, int y, RosasDosVentos rotacaoInicial) {
+        this(localizacao, x, y);
         this.ultimaRotacao = rotacaoInicial;
     }
 
@@ -70,7 +62,7 @@ public class Sonda implements Movimentacao {
      */
     @Override
     public String toString() {
-        return coordenadaSondaX + " " + coordenadaSondaY + " " + ultimaRotacao;
+        return this.coordenada + " " + ultimaRotacao;
     }
  
     /**
@@ -87,7 +79,7 @@ public class Sonda implements Movimentacao {
      * @param controles uma String que deverá conter as letras de controle.
      * @throws IllegalArgumentException caso não seja especificado no mínimo 1 controle ou se for encontrado um controle inválido!
      */
-    public void mandarControle(String controles) {
+    public void mandarControle(String controles) throws IllegalArgumentException {
         if (controles != null && !controles.isEmpty())
         {
             for (int i = 0; i < controles.length(); i++)
@@ -122,9 +114,9 @@ public class Sonda implements Movimentacao {
      * Caso seja especificado uma enumeração que não seja relacionado a movimentação (Ex: rotação), nada acontecerá.
      */
     @Override
-    public void mover(OpcoesMovimentos movimento) {
-        int x = coordenadaSondaX;
-        int y = coordenadaSondaY;
+    public void mover(OpcoesMovimentos movimento) throws CoordenadaInvalidaException {
+        int x = this.coordenada.getX();
+        int y = this.coordenada.getY();
 
         if (movimento == OpcoesMovimentos.FRENTE)
         {
@@ -139,27 +131,7 @@ public class Sonda implements Movimentacao {
                 x--;
         }
 
-        if (!isValidCoordenada(x, y)) {
-            System.out.println("Atingiu os limites da malha!");
-            return;
-        }
-        
-        coordenadaSondaX = x;
-        coordenadaSondaY = y;
-    }
-
-    /**
-     * Verifica se a posição 2d (X, Y) está dentro dos limites da malha.
-     * @param x Coordenada X
-     * @param y Coordenada Y
-     * @return retorna TRUE se está dentro ou FALSE se estiver fora dos limites da matriz da malha.
-     */
-    public boolean isValidCoordenada(int x, int y)
-    {
-        int matrizX = malha.getMatrizX();
-        int matrizY = malha.getMatrizY();
-
-        return x < matrizX || y < matrizY;
+        this.coordenada.tryAlterar(x, y);
     }
 
     /**

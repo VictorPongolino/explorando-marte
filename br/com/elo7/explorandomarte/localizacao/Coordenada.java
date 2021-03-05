@@ -28,8 +28,8 @@ public class Coordenada {
     public Coordenada (Malha malha, int x, int y) {
         this(malha);
 
-        this.x = x + 1;
-        this.y = y + 1;
+        this.x = x;
+        this.y = y;
     }
 
     @Override

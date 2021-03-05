@@ -12,7 +12,7 @@ public class Init {
             int y = 7;
             int coordenadaNaveX = 1;
             int coordenadaNaveY = 2;
-            Sonda umaSonda = new Sonda(new Malha(x, y), coordenadaNaveX, coordenadaNaveY);
+            Sonda umaSonda = new Sonda(new Malha(x, y), new Coordenada(coordenadaNaveX, coordenadaNaveY));
 
             umaSonda.mandarControle("LMLMLMLMM");
             umaSonda.imprimir();
@@ -26,7 +26,7 @@ public class Init {
             int y = 7;
             int coordenadaNaveX = 3;
             int coordenadaNaveY = 3;
-            Sonda segundaSonda = new Sonda(new Malha(x, y), coordenadaNaveX, coordenadaNaveY, RosasDosVentos.E);
+            Sonda segundaSonda = new Sonda(new Malha(x, y), new Coordenada(coordenadaNaveX, coordenadaNaveY), RosasDosVentos.E);
             segundaSonda.mandarControle("MMRMMRMRRM");
             segundaSonda.imprimir();
         } catch (CoordenadaInvalidaException e) {

@@ -12,6 +12,16 @@ public class Coordenada {
     private int x, y;
 
     /**
+     * Define uma coordenada 2d (0, 0) da sonda sem um planalto definido.
+     * @param x coordenada positiva da matriz (da primeira dimensão) de X.
+     * @param y coordenada positiva da matriz (da segunda dimensão) de Y.
+     */
+    public Coordenada(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
      * Define uma coordenada padrão (0,0) da sonda de acordo com o seu planalto.
      * @param malha a malha de um planalto.
      */
@@ -60,11 +70,17 @@ public class Coordenada {
         this.y = y;
     }
 
+    public void setMalha(Malha malha) {
+        this.malha = malha;
+    }
+
+    
     /**
      * Tenta alterar as coordenadas da sonda verificando se a mesma encontra-se dentro da dimensão de seu planalto.
      * Caso ao contrário {@code CoordenadaInvalidaException} será lançado !
-     * @param x
-     * @param y
+     * Caso a malha não foi especificada no construtor {@code NullPointerException} será lançado, use {@code setMalha} se for este caso.
+     * @param x a coordenada X
+     * @param y a coordenada Y
      * @throws CoordenadaInvalidaException
      */
     public void tryAlterar(int x, int y) throws CoordenadaInvalidaException {

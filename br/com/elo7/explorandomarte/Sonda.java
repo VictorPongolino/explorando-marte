@@ -38,10 +38,11 @@ public class Sonda implements Movimentacao {
      * @param coordenadaSondaX as coordenadas inicias X.
      * @param coordenadaSondaY as coordenadas inicias Y.
      */
-    public Sonda(Malha localizacao, int x, int y)
+    public Sonda(Malha localizacao, Coordenada coordenada)
     {
         this(localizacao);
-        this.coordenada = new Coordenada(this.malha, x, y);
+        coordenada.setMalha(localizacao);
+        this.coordenada = coordenada;
     }
 
     /***
@@ -52,8 +53,8 @@ public class Sonda implements Movimentacao {
      * @param coordenadaSondaY as coordenadas inicias Y.
      * @param rotacaoInicial a rotação inicial da sonda.
      */
-    public Sonda (Malha localizacao, int x, int y, RosasDosVentos rotacaoInicial) {
-        this(localizacao, x, y);
+    public Sonda (Malha localizacao, Coordenada coordenada, RosasDosVentos rotacaoInicial) {
+        this(localizacao, coordenada);
         this.ultimaRotacao = rotacaoInicial;
     }
 
